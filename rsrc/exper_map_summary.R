@@ -20,10 +20,6 @@ plot_seed_summary <- function(seed, baseline) {
     image_paths = image_paths,
     nrow = 1,  # 1 row
     ncol = 4,  # 4 columns
-    labels = c("(a)", "(b)", "(c)", "(d)"),
-    label_size = LABEL_SIZE,
-    label_colour = "white",
-    font_family = "Times New Roman"
   )
   
   return(combined_plot)

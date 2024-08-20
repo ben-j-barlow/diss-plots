@@ -32,17 +32,18 @@ visualize_plot_1 <- function(ratio=TRUE) {
   max_x <- max(p1_data$LineNumber)
   
 
-  p <- ggplot(p1_data, aes(x=LineNumber, y=Mean)) +
-    geom_line(color=LINE_COLOR) +   # Plot the mean line
-    geom_ribbon(aes(ymin=Lower, ymax=Upper), alpha=0.2, fill="lightblue") +  # Shaded area for SD
+  p <- ggplot(p1_data, aes(x = LineNumber, y = Mean)) +
+    geom_line(color = LINE_COLOR) +   # Plot the mean line
+    geom_ribbon(aes(ymin = Lower, ymax = Upper), alpha = 0.2, fill = "lightblue") +  # Shaded area for SD
     theme_minimal() +
-    labs(title=title, x="Timestep", y="Std.") +
+    labs(title = title, x = "Timestep", y = "Std.") +
     theme(
-      plot.title = element_text(size=TITLE_SIZE, hjust = 0.5, family=FONT_FAMILY),  # Use constants for size and family
-      text = element_text(family = FONT_FAMILY, size = TEXT_SIZE),  # Use the constant for font family in all text
+      plot.title = element_text(size = TITLE_SIZE, hjust = 0.5, family = FONT_FAMILY),  # Use constants for size and family
+      text = element_text(family = FONT_FAMILY, size = TEXT_SIZE)  # Use the constant for font family in all text
     ) +
-    ylim(0, NA) + # Set y-axis lower limit to 0, upper limit is automatically determined 
-    geom_vline(xintercept=max_x/2, linetype = "dashed", color = DOTTED_LINE_COLOR,linewidth = 0.5)
+    scale_y_log10() +  # Transform y-axis to log scale
+    geom_vline(xintercept = max_x / 2, linetype = "dashed", color = DOTTED_LINE_COLOR, linewidth = 0.5)
+  
   return(p)
 }
 
